@@ -8,13 +8,14 @@
 int main()
 {
 	Calculator calc;
-	calc.SetFormula("2+2*2");
+	calc.SetFormula("(2+2*2");
 	if (calc.CheckBrackets() == true)
 	{
-
+		cout << "Right" << endl;
 	}
 	else
 	{
+		cout << "Wrong" << endl;
 	}
 }
 
