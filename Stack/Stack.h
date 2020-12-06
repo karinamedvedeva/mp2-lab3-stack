@@ -1,4 +1,6 @@
 #pragma once
+const int MAX_SIZE = 1000;
+
 template <class T>
 class Stack
 {
@@ -7,6 +9,10 @@ class Stack
 public:
 	Stack (int _MaxSize)
 	{
+		if (MaxSize<0 || MaxSize >MAX_SIZE)
+		{
+			throw MaxSize;
+		}
 		MaxSize = _MaxSize;
 		mas = new T[MaxSize];
 		size = 0;
@@ -94,5 +100,40 @@ public:
 			throw 0;
 		}
 		return mas[size - 1];
+	}
+
+	int GetSize()
+	{
+		return MaxSize;
+	}
+
+	T& operator[](int pos)
+	{
+		if (pos < 0 || pos >= MaxSize)
+		{
+			throw pos;
+		}
+		return mas[pos];
+	}
+
+	bool operator==(const Stack<T>& m) const
+	{
+		if (MaxSize != m.MaxSize || size!=m.size)
+		{
+			return false;
+		}
+		for (int i = 0; i < size; i++)
+		{
+			if (mas[i] != m.mas[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool operator!=(const Stack<T>& m) const
+	{
+		return !(*this==m);
 	}
 };
