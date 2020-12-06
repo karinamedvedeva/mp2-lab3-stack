@@ -1,10 +1,24 @@
 #include "Calculator.h"
 
+void Calculator::SetFormula(string str)
+{
+	infix = " ";
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '^')
+		{
+			infix += " ";
+		}
+		infix += str[i];
+		infix += " ";
+	}
+}
+
 bool Calculator::CheckBrackets()
 {
-	for (int i = 0; i < formula.size(); i++)
+	for (int i = 0; i < infix.size(); i++)
 	{
-		if (formula[i] == '(')
+		if (infix[i] == '(')
 		{
 			if (st_c.Full())
 			{
@@ -15,7 +29,7 @@ bool Calculator::CheckBrackets()
 				st_c.Push('(');
 			}
 		}
-		if (formula[i] == ')')
+		if (infix[i] == ')')
 		{
 			if (st_c.Empty())
 			{
@@ -36,34 +50,37 @@ int Calculator::Priority(char elem)
 	{
 		return 0;
 	}
-	if (elem == '+')
+	if (elem == '(')
 	{
 		return 1;
+	}
+	if (elem == '+')
+	{
+		return 2;
 	}
 	if (elem == '-')
 	{
-		return 1;
+		return 2;
 	}
 	if (elem == '*')
 	{
-		return 2;
+		return 3;
 	}
 	if (elem == '/')
 	{
-		return 2;
+		return 3;
 	}
 	if (elem == '^')
 	{
-		return 3;
+		return 4;
 	}
 }
-
 
 void Calculator::ToPostfix()
 {
 	postfix = "";
 	string src = "(" + infix + ")";
-	unsigned i = 0;
+	unsigned int i = 0;
 	st_c.Clear();
 	char elem = '!';
 	while (i < src.size())
@@ -71,31 +88,40 @@ void Calculator::ToPostfix()
 		if (src[i] == '(')
 		{
 			st_c.Push(src[i]);
-		}
-		if (src[i] >= '0' && src[i] <= '9')
+		} 
+		else
 		{
-			postfix += src[i];
-		}
-		if (src[i] == '+' || src[i] == '-' || src[i] == '*' || src[i] == '/' || src[i] == '^')
-		{
-			postfix += " ";
-			elem = st_c.Pop();
-			while (Priority(elem) >= Priority(src[i]))
+			if (src[i] >= '0' && src[i] <= '9')
 			{
-				postfix += elem;
-				elem = st_c.Pop();
+				postfix += src[i];
 			}
-			st_c.Push(elem);
-			st_c.Push(src[i]);
-		}
-		if (src[i] == ')')
-		{
-			elem = st_c.Pop();
-			do
+			else
 			{
-				postfix += elem;
-				elem = st_c.Pop();
-			} while (elem != ')');
+				if (src[i] == '+' || src[i] == '-' || src[i] == '*' || src[i] == '/' || src[i] == '^')
+				{
+					postfix += " ";
+					elem = st_c.Pop();
+					while (Priority(elem) >= Priority(src[i]))
+					{
+						postfix += elem;
+						elem = st_c.Pop();
+					}
+					st_c.Push(elem);
+					st_c.Push(src[i]);
+				}
+				else
+				{
+					if (src[i] == ')')
+					{
+						elem = st_c.Pop();
+						do
+						{
+							postfix += elem;
+							elem = st_c.Pop();
+						} while (elem != '(');
+					}
+				}
+			}
 		}
 		i++;
 	}
@@ -104,7 +130,7 @@ void Calculator::ToPostfix()
 double Calculator::CalcPostfix()
 {
 	st_d.Clear();
-	int unsigned i = 0;
+	unsigned int i = 0;
 	while (i < postfix.size())
 	{
 		if (postfix[i] >= '0' && postfix[i] <= '9')
@@ -145,30 +171,28 @@ double Calculator::CalcPostfix()
 				}
 				case'/':
 				{
-					st_d.Push(k2 / k1);
+					st_d.Push(k1 / k2);
 					break;
 				}
-				/*case'^':
+				case'^':
 				{
-					st_d.Push(k2 ^ k1);
+					st_d.Push(pow(k1, k2));
 					break;
-				}*/
 				}
-			}
-			i++;
-			if (st_d.Empty())
-			{
-				throw st_d;
-			}
-			else
-			{
-				st_d.Pop();
-				if (st_d.Empty())
-				{
-					return st_d.Pop();
 				}
-			}
+			}	
 		}
+		i++;
+	}
+	if (st_d.Empty())
+	{
+		throw st_d;
+	}
+	else
+	{
+		return st_d.Top();
 	}
 }
+
+
 

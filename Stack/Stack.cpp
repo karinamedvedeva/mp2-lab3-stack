@@ -1,21 +1,22 @@
 ﻿// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
+#include <locale.h>
 #include <iostream>
 #include "Stack.h"
 #include "Calculator.h"
 
 int main()
 {
+	setlocale(LC_CTYPE, "Rus");
 	Calculator calc;
-	calc.SetFormula("2+2*2");
-	if (calc.CheckBrackets() == true)
-	{
-
-	}
-	else
-	{
-	}
+	string str;
+	cout << "Введите арифметическое выражение: ";
+	cin >> str;
+	calc.SetFormula(str);
+	cout << "Инфиксная форма записи выражения: "<< calc.GetExpression()<< endl;
+	calc.ToPostfix();
+	cout << "Выражение в постфиксной форме: "<< calc.GetPostfix()<< endl;
+	cout <<"Результат вычисления: " <<calc.CalcPostfix();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

@@ -78,12 +78,21 @@ public:
 		{
 			throw 0;
 		}
-		size--;
+		size=size-1;
 		return mas[size];
 	}
 
 	void Clear()
 	{
-		size = -1;
+		size = 0;
+	}
+
+	T Top()
+	{
+		if (Empty())
+		{
+			throw 0;
+		}
+		return mas[size - 1];
 	}
 };

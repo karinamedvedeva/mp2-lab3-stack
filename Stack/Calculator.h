@@ -5,7 +5,6 @@ using namespace std;
 
 class Calculator
 {
-	string formula;
 	Stack <char> st_c; 
 	Stack <double> st_d;
 	string infix;
@@ -17,9 +16,18 @@ public:
 		infix = "";
 		postfix = "";
 	}
-	void SetFormula(string str)
+	void SetFormula(string str);
+	string GetExpression()
 	{
-		formula = str; 
+		return infix;
+	}
+	void SetExpression(string str)
+	{
+		infix = str;
+	}
+	string GetPostfix()
+	{
+		return postfix;
 	}
 	bool CheckBrackets();
 	void ToPostfix(); //перевод в постфиксную форму
