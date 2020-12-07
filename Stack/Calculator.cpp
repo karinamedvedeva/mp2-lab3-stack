@@ -148,11 +148,9 @@ double Calculator::CalcPostfix()
 	{
 		if (postfix[i] >= '0' && postfix[i] <= '9')
 		{
-			double tmp = 0;
-			if (postfix[i] >= 48 && postfix[i] <= 57)
-			{
-				tmp += postfix[i] - '0';
-			}
+			double tmp = strtod(&postfix[i], &c);
+			int j = c - &postfix[i];
+			i += j - 1;
 			st_d.Push(tmp);
 		}
 		if (postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/' || postfix[i] == '^')
