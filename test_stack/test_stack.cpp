@@ -14,7 +14,7 @@ TEST(Stack, throws_when_create_stack_with_negative_size)
 
 TEST(Stack, cant_create_too_large_stack)
 {
-	ASSERT_NO_THROW(Stack <int> bf(MAX_SIZE + 1));
+	ASSERT_ANY_THROW(Stack <int> bf(MAX_SIZE + 1));
 }
 
 TEST(Stack, can_create_copied_stack)

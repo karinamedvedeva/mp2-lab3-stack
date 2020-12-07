@@ -9,9 +9,9 @@ class Stack
 public:
 	Stack (int _MaxSize)
 	{
-		if (MaxSize<0 || MaxSize >MAX_SIZE)
+		if (_MaxSize<=0 || _MaxSize >MAX_SIZE)
 		{
-			throw MaxSize;
+			throw _MaxSize;
 		}
 		MaxSize = _MaxSize;
 		mas = new T[MaxSize];

@@ -170,7 +170,6 @@ namespace MyCalculator {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->ClientSize = System::Drawing::Size(425, 339);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
