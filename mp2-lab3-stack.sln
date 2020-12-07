@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_stack", "test_stack\te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stack", "Stack\ConsoleApplication1.vcxproj", "{DFA664ED-B2EE-4EC9-A71A-DB66F2CBC478}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculator", "Calculator\Calculator.vcxproj", "{04F4B0C3-6662-451A-929E-B7C93517647D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{DFA664ED-B2EE-4EC9-A71A-DB66F2CBC478}.Release|x64.Build.0 = Release|x64
 		{DFA664ED-B2EE-4EC9-A71A-DB66F2CBC478}.Release|x86.ActiveCfg = Release|Win32
 		{DFA664ED-B2EE-4EC9-A71A-DB66F2CBC478}.Release|x86.Build.0 = Release|Win32
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Debug|x64.ActiveCfg = Debug|x64
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Debug|x64.Build.0 = Debug|x64
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Debug|x86.ActiveCfg = Debug|Win32
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Debug|x86.Build.0 = Debug|Win32
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Release|x64.ActiveCfg = Release|x64
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Release|x64.Build.0 = Release|x64
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Release|x86.ActiveCfg = Release|Win32
+		{04F4B0C3-6662-451A-929E-B7C93517647D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

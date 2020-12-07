@@ -24,12 +24,16 @@ TEST(Stack, can_create_copied_stack)
 	ASSERT_NO_THROW(Stack<int> bf1(bf));
 }
 
-/*TEST(Stack, copied_stack_is_equal_to_source_one)
+TEST(Stack, copied_stack_is_equal_to_source_one)
 {
-	Stack <int> bf1(10), bf2(bf1);
-	bf1.Push(10);
-	EXPECT_EQ(bf1.Pop(), bf2.Pop());
-}*/
+	Stack <int> bf1(10), bf2(10);
+	for (int i = 0; i < bf1.GetSize(); i++)
+	{
+		bf1[i] = i + 1;
+		bf2[i] = bf1[i];
+	}
+	EXPECT_EQ(bf1, bf2);
+}
 
 TEST(Stack, copied_stack_has_its_own_memory)
 {
@@ -54,18 +58,6 @@ TEST(Stack, can_put_element)
 	ASSERT_NO_THROW(bf.Push(15));
 	EXPECT_EQ(15, bf.Top());
 }
-
-/*TEST(TVector, throws_when_set_element_with_negative_index)
-{
-	TVector <int> a(5);
-	ASSERT_ANY_THROW(a[-1] = 1);
-}
-
-/*TEST(TVector, throws_when_set_element_with_too_large_index)
-{
-	TVector <int> a(5);
-	ASSERT_ANY_THROW(a[6] = 1);
-}*/
 
 TEST(Stack, can_assign_stack_to_itself)
 {

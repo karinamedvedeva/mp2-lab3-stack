@@ -12,6 +12,10 @@ void Calculator::SetFormula(string str)
 		infix += str[i];
 		infix += " ";
 	}
+	if (!CheckBrackets())
+	{
+		throw 0;
+	}
 }
 
 bool Calculator::CheckBrackets()
@@ -78,6 +82,10 @@ int Calculator::Priority(char elem)
 
 void Calculator::ToPostfix()
 {
+	if (!CheckBrackets())
+	{
+		throw 0;
+	}
 	postfix = "";
 	string src = "(" + infix + ")";
 	unsigned int i = 0;
@@ -129,8 +137,13 @@ void Calculator::ToPostfix()
 
 double Calculator::CalcPostfix()
 {
+	if (!CheckBrackets())
+	{
+		throw 0;
+	}
 	st_d.Clear();
 	unsigned int i = 0;
+	char* c;
 	while (i < postfix.size())
 	{
 		if (postfix[i] >= '0' && postfix[i] <= '9')
@@ -161,7 +174,7 @@ double Calculator::CalcPostfix()
 				}
 				case'-':
 				{
-					st_d.Push(k2 - k1);
+					st_d.Push(k1 - k2);
 					break;
 				}
 				case'*':
